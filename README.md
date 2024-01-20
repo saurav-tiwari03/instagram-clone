@@ -13,7 +13,9 @@ I am committed to providing regular updates to this repository, detailing the pr
 
 ### Day 1:
  - Established the project's routing structure.
- - Implemented an authorization modal to manage user authentication.
+  
+### Day 2:
+  - Created Login/Signup page on Route "/"
 
 
 ## Contribute 
