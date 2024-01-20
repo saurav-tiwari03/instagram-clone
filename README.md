@@ -16,6 +16,8 @@ I am committed to providing regular updates to this repository, detailing the pr
   
 ### Day 2:
   - Created Login/Signup page on Route "/"
+  - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/f7e0b9a5-9372-469f-a4f4-cdf9011ec46e">
+
 
 
 ## Contribute 
