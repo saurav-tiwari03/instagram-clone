@@ -3,10 +3,25 @@ import instaLogo from './../assets/insta-logo.png'
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png' 
 import { IoLogoFacebook } from "react-icons/io";
-import {Link,Routes,Route} from 'react-router-dom'
+import {Link,Routes,Route, useNavigate} from 'react-router-dom'
+import { db } from '../config/firsbase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function LoginSignup() {
+  const history = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(e.target.email.value);
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    createUserWithEmailAndPassword(db, email, password).then((data) => {
+      console.log(data,"auth");
+      history('/home');
+    })
+
+  }
+
   return (
     <div className='flex justify-center items-center gap-4 mt-12 overflow-x-hidden'>
       <div className='lg:block md:block hidden'>
@@ -20,14 +35,12 @@ export default function LoginSignup() {
             </div>
           
             <div>
-              <form action="" className='flex flex-col gap-2'>
-                <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Phone number,username, or email'/>
-                <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Password'/>
-                <Link to='/home'>
-                  <button className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
+              <form action="" onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-2'>
+                <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="email" name='email' placeholder='Phone number,username, or email'/>
+                <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" name='password' placeholder='Password'/>
+                  <button  className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
                     Sign in
                   </button>
-                </Link>
                 
               </form>
               <p className='text-center my-4'>-------OR-------</p>
@@ -36,7 +49,7 @@ export default function LoginSignup() {
             </div>
           </div>
           <div className='border-[1px] border-[#cdcdcd] my-4 '>
-            <p className='text-center p-4'>Don't have an account? <a href="">Sign up</a> </p>
+            <p className='text-center p-4'>Dont have an account? <a href="">Sign up</a> </p>
           </div>
 
           <div className='text-center text-sm my-2'>

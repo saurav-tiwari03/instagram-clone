@@ -11,17 +11,34 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsThreads } from "react-icons/bs";
 import { FaGripLines } from "react-icons/fa6";
-import {Link,Route,Routes} from 'react-router-dom'
+import {Link,Route,Routes, useNavigate} from 'react-router-dom'
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { useState } from 'react';
+import { db } from '../config/firsbase';
+import { signOut } from 'firebase/auth';
+
 
 
 
 
 
 export default function Home() {
+  const history = useNavigate();
   const [message,setMessage] = useState(3);
   const [thread,setThread] = useState(9);
+  const [logoutStatus,setLogoutStatus] = useState(true);
+
+  const logoutStatusHandler = () => {
+    setLogoutStatus(!logoutStatus);
+  }
+  const clickHandler = () => {
+    signOut(db).then((val) => {
+      console.log(val);
+      history('/');
+    })
+  }
+
+
   return (
     <div className='bg-black text-white flex justify-between'>
       {/*Navbar */}
@@ -91,7 +108,7 @@ export default function Home() {
             </Link>
             
           </div>
-          <div>
+          <div className='relative'>
             <a href='https://www.threads.net/login' target='_blank' rel="noreferrer">
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
@@ -104,8 +121,22 @@ export default function Home() {
               </p>
             </div>
             </a>
-            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaGripLines className='text-2xl'/><p className='text-md font-semibold lg:block hidden'>More</p></div>
-          </div>
+            
+              <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200
+              " id='more' onClick={logoutStatusHandler}>
+                <FaGripLines className='text-2xl'/>
+                <p className='text-md font-semibold lg:block hidden'>More</p>
+                {
+                  logoutStatus ? '' :
+                  <div className='bg-[#262626] rounded-lg top-0 left-0 h-[50px] w-[150px] absolute flex items-center justify-center'>
+                    <button className=' rounded-lg top-0 left-0 bg-[#262626] m-auto w-[120px] p-1 text-white hover:bg-[#3c3c3c]'
+                    onClick={clickHandler}>Logout</button>
+                  </div>
+                  
+                }
+              </div>
+
+            </div>
         </div>
         <div className="h-[100vh] w-[1px] bg-[#262626]"></div>
       </div>
