@@ -7,8 +7,8 @@ import { IoLogoFacebook } from "react-icons/io";
 
 export default function LoginSignup() {
   return (
-    <div className='flex justify-center items-center gap-4 mt-12'>
-      <div className=''>
+    <div className='flex justify-center items-center gap-4 mt-12 overflow-x-hidden'>
+      <div className='lg:block md:block hidden'>
         <img src={instaDemo} alt="" width={400}/>
       </div>
       <div className=''>
