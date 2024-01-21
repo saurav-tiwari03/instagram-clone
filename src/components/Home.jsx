@@ -13,12 +13,15 @@ import { BsThreads } from "react-icons/bs";
 import { FaGripLines } from "react-icons/fa6";
 import {Link,Route,Routes} from 'react-router-dom'
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { useState } from 'react';
 
 
 
 
 
 export default function Home() {
+  const [message,setMessage] = useState(3);
+  const [thread,setThread] = useState(9);
   return (
     <div className='bg-black text-white flex justify-between'>
       {/*Navbar */}
@@ -63,10 +66,10 @@ export default function Home() {
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
                 <FaFacebookMessenger className='text-2xl'/>
-                <p className='w-4 h-4 bg-[#ff3040] rounded-full absolute top-0 left-4 text-xs text-center'>4</p>
+                <p className='w-4 h-4 bg-[#ff3040] rounded-full absolute top-0 left-4 text-xs text-center'>{message}</p>
               </div>
               <p className="text-md font-semibold lg:block hidden">
-                Messages
+                Message
               </p>
             </div>
             </Link>
@@ -93,7 +96,7 @@ export default function Home() {
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
                 <BsThreads className='text-2xl'/>
-                <p className='w-4 h-4 bg-[#ff3040] rounded-full absolute top-0 left-4 text-xs text-center'>8</p>
+                <p className='w-4 h-4 bg-[#ff3040] rounded-full absolute top-0 left-4 text-xs text-center'>{thread}</p>
               </div>
               <p className='text-md font-semibold hidden lg:flex lg:items-center'>
                 Threads
