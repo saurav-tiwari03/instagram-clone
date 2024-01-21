@@ -11,6 +11,9 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsThreads } from "react-icons/bs";
 import { FaGripLines } from "react-icons/fa6";
+import {Link,Route,Routes} from 'react-router-dom'
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+
 
 
 
@@ -26,11 +29,38 @@ export default function Home() {
             <FaInstagram className='pl-2 text-3xl lg:hidden block'/>
           </div>
           <div className="flex flex-col" >
-            <div className="flex items-center p-4 gap-3"><MdHomeFilled className='text-2xl '/><p className="text-md font-semibold lg:block hidden">Home</p></div>
-            <div className="flex items-center p-4 gap-3"><FaSearch className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Search</p></div>
-            <div className="flex items-center p-4 gap-3"><FaCompass className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Discover</p></div>
-            <div className="flex items-center p-4 gap-3"><FaClapperboard className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Reels</p></div>
-            <div className="flex items-center p-4 gap-3">
+            <Link tp='/home'>
+              <div className="flex items-center p-4 gap-3 w-auto hover:bg-[#1a1a1a] hover:rounded-md duration-200">
+                <MdHomeFilled className='text-2xl '/>
+                <p className="text-md font-semibold lg:block hidden">
+                  Home
+                </p>
+              </div>
+            </Link>
+            
+            <Link to='/search'>
+              <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
+                <FaSearch className='text-2xl'/>
+                <p className="text-md font-semibold lg:block hidden">
+                  Search
+                </p>
+              </div>
+            </Link>
+
+            <Link to='discover'>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
+              <FaCompass className='text-2xl'/>
+              <p className="text-md font-semibold lg:block hidden">
+                Discover
+              </p>
+            </div>
+            </Link>
+            
+            <Link to='/reels'>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaClapperboard className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Reels</p></div>
+            </Link>
+            <Link to='/direct/inbox'>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
                 <FaFacebookMessenger className='text-2xl'/>
                 <p className='w-4 h-4 bg-[#ff3040] rounded-full absolute top-0 left-4 text-xs text-center'>4</p>
@@ -39,24 +69,39 @@ export default function Home() {
                 Messages
               </p>
             </div>
-            <div className="flex items-center p-4 gap-3">
+            </Link>
+            
+            <Link to='/notifications'>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
                 <FaRegHeart className='text-2xl' />
                 <p className='w-3 h-3 bg-[#ff3040] rounded-full absolute top-0 left-4'> </p>
               </div>
               <p className="text-md font-semibold lg:block hidden">Notifications</p></div>
-            <div className="flex items-center p-4 gap-3"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
-            <div className="flex items-center p-4 gap-3"><FaRegUserCircle className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Profile</p></div>
+            </Link>
+
+            <Link to=''>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
+            </Link>
+            <Link to='/user'>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegUserCircle className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Profile</p></div>
+            </Link>
+            
           </div>
           <div>
-            <div className="flex items-center p-4 gap-3">
+            <a href='https://www.threads.net/login' target='_blank' rel="noreferrer">
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
                 <BsThreads className='text-2xl'/>
                 <p className='w-4 h-4 bg-[#ff3040] rounded-full absolute top-0 left-4 text-xs text-center'>8</p>
               </div>
-              <p className='text-md font-semibold lg:block hidden'>Threads</p>
+              <p className='text-md font-semibold hidden lg:flex lg:items-center'>
+                Threads
+                <p className='hidden hover:block'><FaArrowUpRightFromSquare/></p>
+              </p>
             </div>
-            <div className="flex items-center p-4 gap-3"><FaGripLines className='text-2xl'/><p className='text-md font-semibold lg:block hidden'>More</p></div>
+            </a>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaGripLines className='text-2xl'/><p className='text-md font-semibold lg:block hidden'>More</p></div>
           </div>
         </div>
         <div className="h-[100vh] w-[1px] bg-[#262626]"></div>
@@ -75,14 +120,14 @@ export default function Home() {
           <div className='flex mb-4 items-center'>
             <img src={user} alt="" className='rounded-full' width={50}/>
             <div className='w-[250px] pl-2'>
-              <p className=''>_.nobita.x</p>
-              <p className=''>Saurav Tiwari</p>
+              <Link to='/_.nobita.x'><p className=''>_.nobita.x</p></Link>
+              <p className='text-[#a8a8a8] font-light'>Saurav Tiwari</p>
             </div>
-            <p className='text-blue-600 text-xs'>Switch</p>
+            <p className='text-blue-600 text-xs cursor-pointer'>Switch</p>
           </div>
           <div className='flex justify-between my-2'>
             <h1 className='text-[#737373]'>Suggested for you</h1>
-            <p className=''>See All</p>
+            <Link to='/explore/people'><p className=''>See All</p></Link>
           </div>
 
           <div>

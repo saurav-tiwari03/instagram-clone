@@ -3,6 +3,7 @@ import instaLogo from './../assets/insta-logo.png'
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png' 
 import { IoLogoFacebook } from "react-icons/io";
+import {Link,Routes,Route} from 'react-router-dom'
 
 
 export default function LoginSignup() {
@@ -22,7 +23,12 @@ export default function LoginSignup() {
               <form action="" className='flex flex-col gap-2'>
                 <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Phone number,username, or email'/>
                 <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Password'/>
-                <button className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>Log in</button>
+                <Link to='/home'>
+                  <button className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
+                    Sign in
+                  </button>
+                </Link>
+                
               </form>
               <p className='text-center my-4'>-------OR-------</p>
               <a href="https://shorturl.at/qDNQ4" className='my-2 flex items-center justify-center text-[#385185] font-medium text-sm '><IoLogoFacebook className='mr-1 text-xl'/> Log in with Facebook</a>
