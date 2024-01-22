@@ -49,7 +49,7 @@ export default function LoginSignup() {
             </div>
           </div>
           <div className='border-[1px] border-[#cdcdcd] my-4 '>
-            <p className='text-center p-4'>Dont have an account? <a href="">Sign up</a> </p>
+            <p className='text-center p-4'>Dont have an account? <Link to='/signup'>Sign up</Link> </p>
           </div>
 
           <div className='text-center text-sm my-2'>
@@ -58,8 +58,8 @@ export default function LoginSignup() {
 
           <div className=''>
             <div className='flex justify-evenly'>
-              <button className='bg-[#000] text-white flex items-center rounded-md px-2'><img src={playIcon} width={30} /><p className='text-xs text-start '>Get it from <br/> <span className='text-lg font-semibold'>Google Play </span></p> </button>
-              <button className='bg-[#000] text-white flex items-center rounded-md px-2'><img src={windowIcon} width={30} /> <p className='text-xs text-start'>Get it from <br/> <span className='text-lg font-semibold'>Microsoft</span></p> </button>
+              <a href='https://shorturl.at/pvCK5' target='_blank' rel="noreferrer" className='bg-[#000] text-white flex items-center rounded-md px-2'><img src={playIcon} width={30} /><p className='text-xs text-start '>Get it from <br/> <span className='text-lg font-semibold'>Google Play </span></p> </a>
+              <a href='https://shorturl.at/lANW5' target='_blank' rel="noreferrer" className='bg-[#000] text-white flex items-center rounded-md px-2'><img src={windowIcon} width={30} /> <p className='text-xs text-start'>Get it from <br/> <span className='text-lg font-semibold'>Microsoft</span></p> </a>
             </div>
           </div>
 
