@@ -1,11 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import instaLogo from './../assets/insta-logo.png'
 import { FaFacebookSquare } from "react-icons/fa";
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png'
+import { useState } from 'react';
+import { database } from '../config/firsbase';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 
 
 export default function SignUp() {
+  const history = useNavigate();
+  const [email,setEmail] = useState();
+  const [name,setName] = useState();
+  const [userId,setUserId] = useState();
+  const [password,setPassword] = useState();
+  const [val,setVal] = useState();
+
+  const value = collection(database,"users")
+
+  const getData = async() => {
+    const dbVal = await getDocs(value);
+    setVal(dbVal);
+  }
+  
+
+  const handleUser = async() =>{
+    await addDoc(value,{email:email,name:name,userid:userId,password:password})
+    getData();
+    history('/home',{ propKey: {email:email,name:name,userid:userId,password:password} });
+  }
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
       <div className='flex flex-col border-[1px] border-[#dbdbdb] items-center justify-center p-12 mt-4'>
@@ -18,11 +41,11 @@ export default function SignUp() {
           <p>OR</p>
           <p className='bg-[#dbdbdb] h-[2px] w-[100px]'></p>
         </div>
-        <form action="" className='flex flex-col items-center justify-center gap-2 '>
-          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Mobile number or Email'/>
-          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Full Name'/>
-          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Username'/>
-          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" placeholder='Password'/>
+        <div className='flex flex-col items-center justify-center gap-2 '>
+          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setEmail(val.target.value)} type="text" name='email' placeholder='Mobile number or Email'/>
+          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setName(val.target.value)} type="text" name='name' placeholder='Full Name'/>
+          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setUserId(val.target.value)} type="text" name='userid' placeholder='Username'/>
+          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setPassword(val.target.value)} type="text" name='password' placeholder='Password'/>
           <p className='text-[#737373] my-1 text-center flex flex-wrap w-[250px] text-[11px] items-center justify-center'>People who use our service may have uploaded your contact information to Instagram. 
           Learn More</p>
           <p className='text-center w-[250px] text-[11px] text-[#737373] my-1'>
@@ -30,8 +53,8 @@ export default function SignUp() {
             <a href="https://help.instagram.com/581066165581870/?locale=en_US" target='_blank' rel='noreferrer'>Terms,</a>
             <a href="https://www.facebook.com/privacy/policy" target='_blank' rel='noreferrer'>Privacy Policy</a>  and 
             <a href="https://privacycenter.instagram.com/policies/cookies/" target='_blank' rel='noreferrer'>Cookies Policy</a> .</p>
-          <button className='bg-[#4591fa] hover:bg-[#1877f2] text-white flex items-center justify-center w-[200px] p-1 rounded-md'>Sign up</button>
-        </form>
+          <button onClick={(data) => handleUser(data)} className='bg-[#4591fa] hover:bg-[#1877f2] text-white flex items-center justify-center w-[200px] p-1 rounded-md'>Sign up</button>
+        </div>
       </div>
       <div className='flex border-[1px] border-[#dbdbdb] px-[89px] py-5'>
         <p>Have an account? </p><Link to='/' className='text-[#4591fa]'>Log in</Link>

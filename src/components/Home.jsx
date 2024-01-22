@@ -11,19 +11,22 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsThreads } from "react-icons/bs";
 import { FaGripLines } from "react-icons/fa6";
-import {Link,Route,Routes, useNavigate} from 'react-router-dom'
+import {Link,useLocation} from 'react-router-dom'
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { useState } from 'react';
 import { db } from '../config/firsbase';
 import { signOut } from 'firebase/auth';
-
-
-
+import { getDocs } from 'firebase/firestore';
 
 
 
 export default function Home() {
-  const history = useNavigate();
+  const [userName,setUserName] = useState("_.nobita.x");
+  // console.log(location.state.email);
+
+
+
+
   const [message,setMessage] = useState(3);
   const [thread,setThread] = useState(9);
   const [logoutStatus,setLogoutStatus] = useState(true);
@@ -154,7 +157,7 @@ export default function Home() {
           <div className='flex mb-4 items-center'>
             <img src={user} alt="" className='rounded-full' width={50}/>
             <div className='w-[250px] pl-2'>
-              <Link to='/_.nobita.x'><p className=''>_.nobita.x</p></Link>
+              <Link to={`/${userName}`}><p className=''>{userName}</p></Link>
               <p className='text-[#a8a8a8] font-light'>Saurav Tiwari</p>
             </div>
             <p className='text-blue-600 text-xs cursor-pointer'>Switch</p>

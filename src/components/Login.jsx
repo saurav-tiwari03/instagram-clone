@@ -16,8 +16,8 @@ export default function LoginSignup() {
     const email = e.target.email.value;
     const password = e.target.password.value;
     createUserWithEmailAndPassword(db, email, password).then((data) => {
-      console.log(data,"auth");
       history('/home');
+      console.log(data,"auth");
     })
 
   }
