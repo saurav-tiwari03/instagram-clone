@@ -3,7 +3,7 @@ import instaLogo from './../assets/insta-logo.png'
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png' 
 import { IoLogoFacebook } from "react-icons/io";
-import {Link,Routes,Route, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { db } from '../config/firsbase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -16,7 +16,7 @@ export default function LoginSignup() {
     const email = e.target.email.value;
     const password = e.target.password.value;
     createUserWithEmailAndPassword(db, email, password).then((data) => {
-      history('/home');
+      history('/');
       console.log(data,"auth");
     })
 

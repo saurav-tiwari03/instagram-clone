@@ -1,5 +1,5 @@
 import logo from './../assets/insta-logo-dark.png'
-import user from './../assets/user-img.jpg'
+import user from './../assets/user-profile.png'
 import { FaInstagram } from "react-icons/fa";
 import { MdHomeFilled } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
@@ -11,18 +11,46 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsThreads } from "react-icons/bs";
 import { FaGripLines } from "react-icons/fa6";
-import {Link,useLocation} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-import { useState } from 'react';
-import { db } from '../config/firsbase';
+import { useEffect, useState } from 'react';
+import { database, db } from '../config/firsbase';
 import { signOut } from 'firebase/auth';
-import { getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 
 export default function Home() {
-  const [userName,setUserName] = useState("_.nobita.x");
-  // console.log(location.state.email);
+
+  const val = collection(database,"users");
+  const [userName,setUserName] = useState("");
+  const [name,setName] = useState("");
+  const usersCollection = collection(database, 'users');
+  
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        
+        const querySnapshot = await getDocs(usersCollection);
+        console.log(querySnapshot.docs[0].data().userid);
+        setUserName(querySnapshot.docs[0].data().userid);
+
+
+        // if (!querySnapshot.empty) {
+        //   const firstDocument = querySnapshot.docs[0];
+        //   console.log('First Document ID:', firstDocument.id);
+        //   console.log('First Document Data:', firstDocument.data());
+        // } else {
+        //   console.log('No documents found in the collection');
+        // }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    getData();
+  }, [val]);
+
 
 
 
@@ -132,8 +160,8 @@ export default function Home() {
                 {
                   logoutStatus ? '' :
                   <div className='bg-[#262626] rounded-lg top-0 left-0 h-[50px] w-[150px] absolute flex items-center justify-center'>
-                    <button className=' rounded-lg top-0 left-0 bg-[#262626] m-auto w-[120px] p-1 text-white hover:bg-[#3c3c3c]'
-                    onClick={clickHandler}>Logout</button>
+                    <Link to='/' className=' rounded-lg top-0 left-0 bg-[#262626] m-auto w-[120px] p-1 text-white hover:bg-[#3c3c3c]'
+                    onClick={clickHandler}>Logout</Link>
                   </div>
                   
                 }
@@ -158,7 +186,7 @@ export default function Home() {
             <img src={user} alt="" className='rounded-full' width={50}/>
             <div className='w-[250px] pl-2'>
               <Link to={`/${userName}`}><p className=''>{userName}</p></Link>
-              <p className='text-[#a8a8a8] font-light'>Saurav Tiwari</p>
+              <p className='text-[#a8a8a8] font-light'>{name}</p>
             </div>
             <p className='text-blue-600 text-xs cursor-pointer'>Switch</p>
           </div>

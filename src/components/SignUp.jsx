@@ -27,8 +27,11 @@ export default function SignUp() {
   const handleUser = async() =>{
     await addDoc(value,{email:email,name:name,userid:userId,password:password})
     getData();
-    history('/home',{ propKey: {email:email,name:name,userid:userId,password:password} });
+    history('/',{ propKey: {email:email,name:name,userid:userId,password:password} });
   }
+
+
+
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
       <div className='flex flex-col border-[1px] border-[#dbdbdb] items-center justify-center p-12 mt-4'>
