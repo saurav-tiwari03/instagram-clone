@@ -4,8 +4,9 @@ import Home from './components/Home'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import SignUp from './components/SignUp'
 import { onAuthStateChanged } from 'firebase/auth';
-import { database,db } from './config/firsbase';
+import { db } from './config/firsbase';
 import { useEffect, useState } from 'react'
+import Profile from './components/Profile'
 
 
 
@@ -19,6 +20,7 @@ function App() {
 
     return () => unsubscribe();
   }, []);
+  const username = "Saurav_5625"
 
   return (
     <>
@@ -27,6 +29,7 @@ function App() {
           <Routes>
             <Route path='/' element={user ? <Home/> : <Login />} />
             <Route path='/signup' element={<SignUp />}/>
+            <Route path={`/${username}`} element={<Profile />}/>
           </Routes>
         </div>
       </Router>
