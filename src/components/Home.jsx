@@ -135,7 +135,7 @@ export default function Home() {
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
             </Link>
             <Link to='/user'>
-            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegUserCircle className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Profile</p></div>
+            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><img src={user} width={25} alt="" /><p className="text-md font-semibold lg:block hidden">Profile</p></div>
             </Link>
             
           </div>
