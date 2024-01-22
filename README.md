@@ -17,6 +17,11 @@ I am committed to providing regular updates to this repository, detailing the pr
 ### Day 2:
   - Created Login/Signup page on Route "/"
   - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/f7e0b9a5-9372-469f-a4f4-cdf9011ec46e">
+### Day 3:
+  - Made Login/Logout Working using Firebase Authorization
+  - Created HomePage (Navbar,Suggestions) on Route "/home"
+  - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/89c2d0af-e82d-4c4a-96c1-465134f2d400">
+
 
 
 
