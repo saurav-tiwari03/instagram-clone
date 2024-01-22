@@ -21,7 +21,10 @@ I am committed to providing regular updates to this repository, detailing the pr
   - Made Login/Logout Working using Firebase Authorization
   - Created HomePage (Navbar,Suggestions) on Route "/home"
   - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/89c2d0af-e82d-4c4a-96c1-465134f2d400">
-
+### Day 4:
+  - Added SignUp page on Route "/signup"
+  - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/b1fb26e9-d08e-4326-97e2-26fe169282ad">
+  - Implemented a feature that redirects users to the dashboard upon visiting the "/" route if they are logged in. Conversely, if a user is not logged in, they will be redirected to the login page when accessing the "/" route
 
 
 
