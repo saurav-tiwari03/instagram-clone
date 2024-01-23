@@ -26,7 +26,9 @@ I am committed to providing regular updates to this repository, detailing the pr
   - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/b1fb26e9-d08e-4326-97e2-26fe169282ad">
   - Implemented a feature that redirects users to the dashboard upon visiting the "/" route if they are logged in. Conversely, if a user is not logged in, they will be redirected to the login page when accessing the "/" route
 
-
+### Day 5:
+  - Added Upload Post Component that will Upload any img on User Profile this functionality updates database only do not update user profile
+  - <img width="385" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/bf35b705-6698-4e5e-a4db-56df88906bc1">
 
 ## Contribute 
   - git clone "https://github.com/saurav-tiwari03/instagram-clone.git"
