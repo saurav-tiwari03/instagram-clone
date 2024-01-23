@@ -28,7 +28,7 @@ I am committed to providing regular updates to this repository, detailing the pr
 
 ### Day 5:
   - Added Upload Post Component that will Upload any img on User Profile this functionality updates database only do not update user profile
-  - <img width="385" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/bf35b705-6698-4e5e-a4db-56df88906bc1">
+  - <img width="100" alt="image" src="https://github.com/saurav-tiwari03/instagram-clone/assets/116860218/bf35b705-6698-4e5e-a4db-56df88906bc1">
 
 ## Contribute 
   - git clone "https://github.com/saurav-tiwari03/instagram-clone.git"
