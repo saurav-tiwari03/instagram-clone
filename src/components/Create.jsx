@@ -32,7 +32,7 @@ export default function Create() {
         ''
       ) : (
         <div className='absolute flex items-center justify-center h-[100vh] w-[100vw] rounded-xl'>
-          <div className='h-[500px] w-[500px] bg-[#262626] rounded-xl'>
+          <div className='h-[300px] w-[300px] md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px] bg-[#262626] rounded-xl'>
             <div className='flex items-center justify-center'>
               <p className='text-center text-xl font-semibold py-1'>Create new post</p>
               
