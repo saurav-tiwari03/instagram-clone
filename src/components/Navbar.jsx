@@ -16,6 +16,9 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { signOut } from 'firebase/auth';
 import { db } from '../config/firsbase';
 import { Link } from 'react-router-dom';
+import Create from './Create';
+import { ImCross } from 'react-icons/im';
+
 
 export default function Navbar() {
 
@@ -23,6 +26,7 @@ export default function Navbar() {
   const [message,setMessage] = useState(3);
   const [thread,setThread] = useState(9);
   const [logoutStatus,setLogoutStatus] = useState(true);
+  const [upload,setUpload] = useState(true);
 
 
   const logoutStatusHandler = () => {
@@ -39,6 +43,20 @@ export default function Navbar() {
 
   return (
     <div>
+      {
+        upload ? "" : (
+          <div className='absolute'>
+            <Create/>
+          </div>
+        )
+      }
+      {
+        upload ? "" : 
+        <button className='absolute top-4 right-4' onClick={() => setUpload(!upload)}>
+          <ImCross />
+        </button>
+      }
+
       <div className="h-[100vh] flex ">
         <div className='px-2 lg:pr-[40px] flex flex-col justify-evenly'>
           <div className='flex items-center pl-2'>
@@ -97,9 +115,9 @@ export default function Navbar() {
               <p className="text-md font-semibold lg:block hidden">Notifications</p></div>
             </Link>
 
-            <Link to=''>
-            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
-            </Link>
+            <button className='' onClick={() => setUpload(!upload)}>
+              <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
+            </button>
             <Link to='/user'>
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><img src={user} width={25} alt="" /><p className="text-md font-semibold lg:block hidden">Profile</p></div>
             </Link>

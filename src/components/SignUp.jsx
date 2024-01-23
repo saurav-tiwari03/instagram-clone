@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link, useNavigate } from 'react-router-dom';
 import instaLogo from './../assets/insta-logo.png'
 import { FaFacebookSquare } from "react-icons/fa";
