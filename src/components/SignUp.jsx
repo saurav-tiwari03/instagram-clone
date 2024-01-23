@@ -7,6 +7,8 @@ import windowIcon from './../assets/window-btn.png'
 import { useState } from 'react';
 import { database } from '../config/firsbase';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { db } from '../config/firsbase';
+import { createUserWithEmailAndPassword, parseActionCodeURL } from 'firebase/auth';
 
 
 export default function SignUp() {
@@ -26,6 +28,11 @@ export default function SignUp() {
   
 
   const handleUser = async() =>{
+    try {
+      await createUserWithEmailAndPassword(email,password)
+    } catch (error) { 
+      console.log(error);
+    }
     await addDoc(value,{email:email,name:name,userid:userId,password:password})
     getData();
     history('/',{ propKey: {email:email,name:name,userid:userId,password:password} });
