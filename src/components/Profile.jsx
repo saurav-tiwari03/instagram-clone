@@ -1,4 +1,5 @@
-import {} from 'react'
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import user from './../assets/user-profile.png'
 import { IoIosSettings } from "react-icons/io";
@@ -6,7 +7,12 @@ import Footer from './Footer';
 
 
 
-export default function Profile() {
+export default function Profile({username}) {
+  console.log(username)
+  const [name,setName] = useState();
+  useEffect(() => {
+    setName(username);
+  },[username])
   return (
     <div className='bg-black text-white flex'>
       <Navbar />
@@ -20,7 +26,7 @@ export default function Profile() {
             </div>
             <div className='flex flex-col gap-2'>
               <div className='flex items-center gap-4'>
-                <p>Saurav_5625</p>
+                <p>{name}</p>
                 <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>Edit Profile</button>
                 <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>View Profile</button>
                 <p className='text-2xl'><IoIosSettings/></p>

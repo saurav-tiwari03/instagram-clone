@@ -20,8 +20,7 @@ function App() {
 
     return () => unsubscribe();
   }, []);
-  const username = "Saurav_5625"
-
+  const username = "_.nobita"
   return (
     <>
       <Router>
@@ -29,7 +28,7 @@ function App() {
           <Routes>
             <Route path='/' element={user ? <Home/> : <Login />} />
             <Route path='/signup' element={<SignUp />}/>
-            <Route path={`/${username}`} element={<Profile />}/>
+            <Route path={`/${username}`} element={<Profile username={username}/>}/>
           </Routes>
         </div>
       </Router>
