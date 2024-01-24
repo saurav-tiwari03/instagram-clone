@@ -16,15 +16,13 @@ export default function LoginSignup() {
   const signInHandler = () => {
     try {
       signInWithEmailAndPassword(db, email, password)
-        .then(() => alert('Signin successful'));
+        .then(() => console.log('Signin successful'));
     } catch (error) {
       console.log(error);
     }
     
 
   }
-
-
 
   return (
     <div className='flex justify-center items-center gap-4 mt-12 overflow-x-hidden'>

@@ -6,9 +6,9 @@ import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png'
 import { useState } from 'react';
 import { database } from '../config/firsbase';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../config/firsbase';
-import { createUserWithEmailAndPassword, parseActionCodeURL } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function SignUp() {
