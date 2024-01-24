@@ -5,23 +5,26 @@ import windowIcon from './../assets/window-btn.png'
 import { IoLogoFacebook } from "react-icons/io";
 import {Link} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { useState } from 'react';
+import { db } from '../config/firsbase';
 
 export default function LoginSignup() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    if(email && password) {
-      try {
-        signInWithEmailAndPassword(email, password);
-        console.log(email,password)
-      } catch (error) {
-        console.log('Error while loggin in : ',error);
-      }
+  const [email,setEmail] = useState();
+  const [password,setPassword] = useState();
+
+
+  const signInHandler = () => {
+    try {
+      signInWithEmailAndPassword(db, email, password)
+        .then(() => console.log('Signin successful'));
+    } catch (error) {
+      console.log(error);
     }
+    
 
   }
+
+
 
   return (
     <div className='flex justify-center items-center gap-4 mt-12 overflow-x-hidden'>
@@ -36,13 +39,13 @@ export default function LoginSignup() {
             </div>
           
             <div>
-              <form action="" onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-2'>
-                <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="email" name='email' placeholder='Phone number,username, or email'/>
-                <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" name='password' placeholder='Password'/>
-                  <button  className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
+              <div  className='flex flex-col gap-2'>
+                <input onChange={(e) => setEmail(e.target.value)} className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="email" name='email' placeholder='Phone number,username, or email'/>
+                <input onChange={(e) => setPassword(e.target.value)} className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" name='password' placeholder='Password'/>
+                  <button onClick={signInHandler}  className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
                     Sign in
                   </button>
-              </form>
+              </div>
               <p className='text-center my-4'>-------OR-------</p>
               <a href="https://shorturl.at/qDNQ4" className='my-2 flex items-center justify-center text-[#385185] font-medium text-sm '><IoLogoFacebook className='mr-1 text-xl'/> Log in with Facebook</a>
               <p className='text-sm text-center my-2'>Forgot password?</p>
