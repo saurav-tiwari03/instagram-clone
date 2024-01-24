@@ -3,22 +3,23 @@ import instaLogo from './../assets/insta-logo.png'
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png' 
 import { IoLogoFacebook } from "react-icons/io";
-import {Link, useNavigate} from 'react-router-dom'
-import { db } from '../config/firsbase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {Link} from 'react-router-dom'
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function LoginSignup() {
-  const history = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target.email.value);
     const email = e.target.email.value;
     const password = e.target.password.value;
-    createUserWithEmailAndPassword(db, email, password).then((data) => {
-      history('/');
-      console.log(data,"auth");
-    })
+    if(email && password) {
+      try {
+        signInWithEmailAndPassword(email, password);
+        console.log(email,password)
+      } catch (error) {
+        console.log('Error while loggin in : ',error);
+      }
+    }
 
   }
 
@@ -41,7 +42,6 @@ export default function LoginSignup() {
                   <button  className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
                     Sign in
                   </button>
-                
               </form>
               <p className='text-center my-4'>-------OR-------</p>
               <a href="https://shorturl.at/qDNQ4" className='my-2 flex items-center justify-center text-[#385185] font-medium text-sm '><IoLogoFacebook className='mr-1 text-xl'/> Log in with Facebook</a>

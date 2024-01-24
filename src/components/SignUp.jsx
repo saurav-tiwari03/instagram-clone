@@ -38,6 +38,11 @@ export default function SignUp() {
     history('/',{ propKey: {email:email,name:name,userid:userId,password:password} });
   }
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(db, email, password);
+  }
+
 
 
   return (
@@ -52,7 +57,7 @@ export default function SignUp() {
           <p>OR</p>
           <p className='bg-[#dbdbdb] h-[2px] w-[100px]'></p>
         </div>
-        <div className='flex flex-col items-center justify-center gap-2 '>
+        <form onSubmit={(e) => submitHandler(e)} className='flex flex-col items-center justify-center gap-2 '>
           <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setEmail(val.target.value)} type="text" name='email' placeholder='Mobile number or Email'/>
           <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setName(val.target.value)} type="text" name='name' placeholder='Full Name'/>
           <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setUserId(val.target.value)} type="text" name='userid' placeholder='Username'/>
@@ -65,7 +70,7 @@ export default function SignUp() {
             <a href="https://www.facebook.com/privacy/policy" target='_blank' rel='noreferrer'>Privacy Policy</a>  and 
             <a href="https://privacycenter.instagram.com/policies/cookies/" target='_blank' rel='noreferrer'>Cookies Policy</a> .</p>
           <button onClick={(data) => handleUser(data)} className='bg-[#4591fa] hover:bg-[#1877f2] text-white flex items-center justify-center w-[200px] p-1 rounded-md'>Sign up</button>
-        </div>
+        </form>
       </div>
       <div className='flex border-[1px] border-[#dbdbdb] px-[89px] py-5'>
         <p>Have an account? </p><Link to='/' className='text-[#4591fa]'>Log in</Link>
