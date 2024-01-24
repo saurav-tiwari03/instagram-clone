@@ -16,7 +16,7 @@ export default function LoginSignup() {
   const signInHandler = () => {
     try {
       signInWithEmailAndPassword(db, email, password)
-        .then(() => console.log('Signin successful'));
+        .then(() => alert('Signin successful'));
     } catch (error) {
       console.log(error);
     }
