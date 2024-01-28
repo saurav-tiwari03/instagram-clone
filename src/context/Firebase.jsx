@@ -1,3 +1,4 @@
+import { createContext, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore';
@@ -13,6 +14,16 @@ const firebaseConfig = {
   databaseUrl:"https://emailpasswordlogin-ae0ad-default-rtdb.firebaseio.com/"
 };
 
+export const FirebaseContext = createContext(null);
+
+export const FirebaseProvider = (props) => {
+  const [userName,setUserName] = useState("_.nobita");
+  return (
+    <FirebaseContext.Provider value={{userName}}>
+      {props.children}
+    </FirebaseContext.Provider>
+  )
+}
 const app = initializeApp(firebaseConfig);
 export const database = getFirestore(app)
 export const db = getAuth(app);

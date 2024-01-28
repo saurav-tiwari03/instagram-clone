@@ -8,9 +8,11 @@ import { db } from './config/firsbase';
 import { useEffect, useState } from 'react'
 import Profile from './components/Profile'
 
+import { useContext } from 'react'
 
 
-function App() {
+function App(props) {
+  
   const [user, setUser] = useState(true);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ function App() {
 
     return () => unsubscribe();
   }, []);
-  const username = "_.nobita"
+  const username = props.username;
   return (
     <>
       <Router>

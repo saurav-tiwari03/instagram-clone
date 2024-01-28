@@ -41,7 +41,7 @@ export default function Create() {
             <div  className='flex items-center justify-center h-full w-full'>
               <div className='w-[200px] h-[200px] flex flex-col justify-center gap-10'>
                 {imageVisible ? (
-                  <img onClick={clickHandler} width={250} src={dragNDrop} alt='Drag and Drop' />
+                  <img onClick={clickHandler} className='cursor-pointer' width={250} src={dragNDrop} alt='Drag and Drop' />
                 ) : (
                   <img onClick={clickHandler} className='rounded-md cursor-pointer' width={150} src={file ? URL.createObjectURL(file) : dragNDrop} alt='' />
                 )}

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { database } from '../config/firsbase';
 import { collection, getDocs } from 'firebase/firestore';
 import Navbar from './Navbar';
+import Switch from './Switch';
 
 
 
@@ -15,6 +16,7 @@ export default function Home() {
   const [userName,setUserName] = useState("");
   const [name,setName] = useState("");
   const usersCollection = collection(database, 'users');
+  const [showAccount,setShowAccount] = useState(false)
   
   useEffect(() => {
     const getData = async () => {
@@ -48,10 +50,18 @@ export default function Home() {
       <Navbar />
       
       {/*Dicover section */}
+      {
+        showAccount ? (
+          <div className='hidden lg:flex relative'>
+            <Switch showAccount={showAccount}/>
+          </div>
+        ) : ''
+      }
       <div>
 
       </div>
       {/*Suggestions */}
+      
       <div className='hidden w-[300px] lg:flex lg:justify-evenly gap-10' >
         {/*User section */}
         <div className='mt-10' >
@@ -61,7 +71,7 @@ export default function Home() {
               <Link to={`/${userName}`}><p className=''>{userName}</p></Link>
               <p className='text-[#a8a8a8] font-light'>{name}</p>
             </div>
-            <p className='text-blue-600 text-xs cursor-pointer'>Switch</p>
+            <button onClick={() => setShowAccount(!showAccount)} className='text-blue-600 text-xs cursor-pointer'>Switch</button>
           </div>
           <div className='flex justify-between my-2'>
             <h1 className='text-[#737373]'>Suggested for you</h1>
