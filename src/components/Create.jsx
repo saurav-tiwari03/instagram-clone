@@ -2,7 +2,7 @@
 import { useState, useRef } from 'react';
 import dragNDrop from '../assets/drag-n-drop.png';
 import { addDoc,collection } from 'firebase/firestore';
-import { database } from '../config/firsbase';
+import { database } from '../config/firebase';
 
 export default function Create() {
   const [show, setShow] = useState(false);

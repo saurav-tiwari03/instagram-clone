@@ -5,10 +5,12 @@ import { FaFacebookSquare } from "react-icons/fa";
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png'
 import { useState } from 'react';
-import { database } from '../config/firsbase';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../config/firsbase';
+// import {  } from './../config/firsbase';
+import { addDoc, collection,getDocs } from 'firebase/firestore';
+import { db,database } from '../config/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 
 export default function SignUp() {
@@ -18,6 +20,7 @@ export default function SignUp() {
   const [userId,setUserId] = useState();
   const [password,setPassword] = useState();
   const [val,setVal] = useState();
+  const [eye,setEye] = useState();
 
   const value = collection(database,"users")
 
@@ -43,7 +46,9 @@ export default function SignUp() {
     createUserWithEmailAndPassword(db, email, password);
   }
 
-
+  const eyeHandler = () => {
+    setEye(!eye);
+  }
 
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
@@ -61,7 +66,14 @@ export default function SignUp() {
           <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setEmail(val.target.value)} type="text" name='email' placeholder='Mobile number or Email'/>
           <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setName(val.target.value)} type="text" name='name' placeholder='Full Name'/>
           <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setUserId(val.target.value)} type="text" name='userid' placeholder='Username'/>
-          <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setPassword(val.target.value)} type="text" name='password' placeholder='Password'/>
+          <div className='flex relative items-center' >
+            <input className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' onChange={(val) => setPassword(val.target.value)} type={`${eye ? 'text' : 'password'}`} name='password' placeholder='Password'/>
+            <div onClick={eyeHandler} className='absolute right-2 text-xl cursor-pointer select-none'>
+              {
+                eye ? <FaRegEyeSlash /> : <FaRegEye />
+              }
+            </div>
+          </div>
           <p className='text-[#737373] my-1 text-center flex flex-wrap w-[250px] text-[11px] items-center justify-center'>People who use our service may have uploaded your contact information to Instagram. 
           Learn More</p>
           <p className='text-center w-[250px] text-[11px] text-[#737373] my-1'>

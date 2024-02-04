@@ -3,14 +3,21 @@ import instaLogo from './../assets/insta-logo.png'
 import playIcon from './../assets/play-btn.png'
 import windowIcon from './../assets/window-btn.png' 
 import { IoLogoFacebook } from "react-icons/io";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 import {Link} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { db } from '../config/firsbase';
+import { db } from '../config/firebase';
 
 export default function LoginSignup() {
   const [email,setEmail] = useState();
   const [password,setPassword] = useState();
+  const [eye,setEye] = useState(true);
+
+  const eyeHandler = () => {
+    setEye(!eye);
+  }
 
 
   const signInHandler = () => {
@@ -20,8 +27,6 @@ export default function LoginSignup() {
     } catch (error) {
       console.log(error);
     }
-    
-
   }
 
   return (
@@ -38,8 +43,15 @@ export default function LoginSignup() {
           
             <div>
               <div  className='flex flex-col gap-2'>
-                <input onChange={(e) => setEmail(e.target.value)} className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="email" name='email' placeholder='Phone number,username, or email'/>
-                <input onChange={(e) => setPassword(e.target.value)} className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="text" name='password' placeholder='Password'/>
+                <input onChange={(e) => setEmail(e.target.value)} className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type="email" name='email' placeholder='Email'/>
+                <div className='flex relative items-center'>
+                  <input onChange={(e) => setPassword(e.target.value)} className='bg-[#fafafa] rounded-sm h-10 border-[1px] border-[#cdcdcd] m-auto w-[250px] p-1 text-xs outline-none' type={`${eye ? 'text' : 'password'}`} name='password' placeholder='Password'/>
+                  <div onClick={eyeHandler} className='absolute right-2 text-xl cursor-pointer select-none'>
+                    {
+                      eye ?  <FaRegEyeSlash /> : <FaRegEye /> 
+                    }
+                  </div>
+                </div>
                   <button onClick={signInHandler}  className='bg-[#4cb5f9] w-[250px] m-auto text-center text-white rounded-md py-1'>
                     Sign in
                   </button>

@@ -14,7 +14,7 @@ import { BsThreads } from "react-icons/bs";
 import { FaGripLines } from "react-icons/fa6";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { signOut } from 'firebase/auth';
-import { db } from '../config/firsbase';
+import { db } from '../config/firebase';
 import { Link } from 'react-router-dom';
 import Create from './Create';
 import { ImCross } from 'react-icons/im';

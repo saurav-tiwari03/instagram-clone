@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import user from './../assets/user-profile.png'
-
 import {Link} from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { database } from '../config/firsbase';
+import { database,db } from './../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Navbar from './Navbar';
 import Switch from './Switch';
+import { signOut } from 'firebase/auth';
+
 
 
 
@@ -16,7 +17,8 @@ export default function Home() {
   const [userName,setUserName] = useState("");
   const [name,setName] = useState("");
   const usersCollection = collection(database, 'users');
-  const [showAccount,setShowAccount] = useState(false)
+  const [showAccount,setShowAccount] = useState(false);
+  const [logoutStatus,setLogoutStatus] = useState(true);
   
   useEffect(() => {
     const getData = async () => {
@@ -27,13 +29,6 @@ export default function Home() {
         setUserName(querySnapshot.docs[0].data().userid);
 
 
-        // if (!querySnapshot.empty) {
-        //   const firstDocument = querySnapshot.docs[0];
-        //   console.log('First Document ID:', firstDocument.id);
-        //   console.log('First Document Data:', firstDocument.data());
-        // } else {
-        //   console.log('No documents found in the collection');
-        // }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -41,6 +36,16 @@ export default function Home() {
 
     getData();
   }, [usersCollection, val]);  
+
+  const logoutStatusHandler = () => {
+    setLogoutStatus(!logoutStatus);
+  }
+  const clickHandler = () => {
+    signOut(db).then((val) => {
+      console.log(val);
+      history('/');
+    })
+  }
   
 
 
@@ -71,7 +76,7 @@ export default function Home() {
               <Link to={`/${userName}`}><p className=''>{userName}</p></Link>
               <p className='text-[#a8a8a8] font-light'>{name}</p>
             </div>
-            <button onClick={() => setShowAccount(!showAccount)} className='text-blue-600 text-xs cursor-pointer'>Switch</button>
+            <button onClick={clickHandler} className='text-blue-600 text-xs cursor-pointer'>Signout</button>
           </div>
           <div className='flex justify-between my-2'>
             <h1 className='text-[#737373]'>Suggested for you</h1>
@@ -99,13 +104,6 @@ export default function Home() {
               © 2024 INSTAGRAM FROM META
             </div>
           </div>
-
-
-
-
-
-
-
 
 
         </div>

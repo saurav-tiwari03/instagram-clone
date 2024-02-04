@@ -4,11 +4,11 @@ import Home from './components/Home'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import SignUp from './components/SignUp'
 import { onAuthStateChanged } from 'firebase/auth';
-import { db } from './config/firsbase';
+import { db } from './config/firebase';
 import { useEffect, useState } from 'react'
 import Profile from './components/Profile'
 
-import { useContext } from 'react'
+// import { useContext } from 'react'
 
 
 function App(props) {
