@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore,collection,getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDGvyebVxly6b8tdMjEmqOnlJohmJ4r7vY",
@@ -17,9 +17,27 @@ const firebaseConfig = {
 export const FirebaseContext = createContext(null);
 
 export const FirebaseProvider = (props) => {
-  const [userName,setUserName] = useState("_.nobita");
+  const usersCollection = collection(database, 'users');
+  const [userName,setUserName] = useState("");
+  const val = collection(database,"users");
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        
+        const querySnapshot = await getDocs(usersCollection);
+        console.log(querySnapshot.docs[0].data().userid);
+        setUserName(querySnapshot.docs[0].data().userid);
+
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    getData();
+  }, [val]);  
   return (
-    <FirebaseContext.Provider value={{userName}}>
+    <FirebaseContext.Provider value={{userName,setUserName}}>
       {props.children}
     </FirebaseContext.Provider>
   )

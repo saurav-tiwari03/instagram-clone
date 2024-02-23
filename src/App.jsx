@@ -5,15 +5,16 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import SignUp from './components/SignUp'
 import { onAuthStateChanged } from 'firebase/auth';
 import { db } from './config/firebase';
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Profile from './components/Profile'
-
-// import { useContext } from 'react'
+import { FirebaseContext } from './context/Firebase'
 
 
 function App(props) {
+  const Firebase = useContext(FirebaseContext)
   
   const [user, setUser] = useState(true);
+  const [userName,setUserName] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(db, (authUser) => {
@@ -22,7 +23,9 @@ function App(props) {
 
     return () => unsubscribe();
   }, []);
-  const username = props.username;
+  useEffect(() => {
+    setUserName(Firebase.userName)
+  },[])
   return (
     <>
       <Router>
@@ -30,7 +33,7 @@ function App(props) {
           <Routes>
             <Route path='/' element={user ? <Home/> : <Login />} />
             <Route path='/signup' element={<SignUp />}/>
-            <Route path={`/${username}`} element={<Profile username={username}/>}/>
+            <Route path={`/${userName}`} element={<Profile username={userName}/>}/>
           </Routes>
         </div>
       </Router>

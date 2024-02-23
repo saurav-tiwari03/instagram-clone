@@ -5,41 +5,24 @@ import { useEffect, useState } from 'react';
 import { database,db } from './../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Navbar from './Navbar';
-import Switch from './Switch';
 import { signOut } from 'firebase/auth';
+import { useContext } from 'react';
+import { FirebaseContext } from '../context/Firebase';
+import { Story } from './Story';
 
 
 
 
 export default function Home() {
-
+  const Firebase = useContext(FirebaseContext);
   const val = collection(database,"users");
-  const [userName,setUserName] = useState("");
+  const [userName,setUserName] = useState("Loading..");
   const [name,setName] = useState("");
-  const usersCollection = collection(database, 'users');
   const [showAccount,setShowAccount] = useState(false);
   const [logoutStatus,setLogoutStatus] = useState(true);
-  
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        
-        const querySnapshot = await getDocs(usersCollection);
-        console.log(querySnapshot.docs[0].data().userid);
-        setUserName(querySnapshot.docs[0].data().userid);
-
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    getData();
-  }, [usersCollection, val]);  
-
-  const logoutStatusHandler = () => {
-    setLogoutStatus(!logoutStatus);
-  }
+  useEffect(() =>  {
+    setUserName(Firebase.userName);
+  },[0])
   const clickHandler = () => {
     signOut(db).then((val) => {
       console.log(val);
@@ -48,21 +31,17 @@ export default function Home() {
   }
   
 
-
   return (
-    <div className='bg-black text-white flex justify-between'>
+    <div className='bg-black text-white flex'>
       {/*Navbar */}
       <Navbar />
+      <div className='bg-black text-white flex justify-between w-[100vw]'>
       
       {/*Dicover section */}
-      {
-        showAccount ? (
-          <div className='hidden lg:flex relative'>
-            <Switch showAccount={showAccount}/>
-          </div>
-        ) : ''
-      }
-      <div>
+      <div className='flex items-start justify-start m-4'>
+        <div className='flex gap-4'>
+          <Story userName={userName}/>
+        </div>
 
       </div>
       {/*Suggestions */}
@@ -111,6 +90,7 @@ export default function Home() {
 
         </div>
       </div>
+    </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { FirebaseContext } from '../context/Firebase';
 import logo from './../assets/insta-logo-dark.png'
 import { FaInstagram } from "react-icons/fa";
 import { MdHomeFilled } from "react-icons/md";
@@ -20,13 +21,14 @@ import Create from './Create';
 import { ImCross } from 'react-icons/im';
 
 
-export default function Navbar() {
+export default function Navbar(props) {
 
-
+  const Firebase = useContext(FirebaseContext)
   const [message,setMessage] = useState(3);
   const [thread,setThread] = useState(9);
   const [logoutStatus,setLogoutStatus] = useState(true);
   const [upload,setUpload] = useState(true);
+  const [userName,setUserName] = useState("");
 
 
   const logoutStatusHandler = () => {
@@ -38,6 +40,14 @@ export default function Navbar() {
       history('/');
     })
   }
+  const callHandler = () => {
+    setUserName(Firebase.userName);
+    console.log(userName);
+  }
+  useEffect(() => {
+    callHandler();
+  },[])
+  
 
 
 
@@ -90,10 +100,6 @@ export default function Navbar() {
               </p>
             </div>
             </Link>
-            
-            <Link to='/reels'>
-            <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaClapperboard className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Reels</p></div>
-            </Link>
             <Link to='/direct/inbox'>
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
@@ -118,7 +124,7 @@ export default function Navbar() {
             <button className='' onClick={() => setUpload(!upload)}>
               <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
             </button>
-            <Link to='/user'>
+            <Link to={`${userName}`}>
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><img src={user} width={25} alt="" /><p className="text-md font-semibold lg:block hidden">Profile</p></div>
             </Link>
             
