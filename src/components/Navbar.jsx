@@ -74,7 +74,7 @@ export default function Navbar(props) {
             <FaInstagram className='pl-2 text-3xl lg:hidden block'/>
           </div>
           <div className="flex flex-col" >
-            <Link tp='/home'>
+            <Link to='/'>
               <div className="flex items-center p-4 gap-3 w-auto hover:bg-[#1a1a1a] hover:rounded-md duration-200">
                 <MdHomeFilled className='text-2xl '/>
                 <p className="text-md font-semibold lg:block hidden">
@@ -92,7 +92,7 @@ export default function Navbar(props) {
               </div>
             </Link>
 
-            <Link to='discover'>
+            <Link to='/discover'>
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <FaCompass className='text-2xl'/>
               <p className="text-md font-semibold lg:block hidden">
@@ -112,19 +112,19 @@ export default function Navbar(props) {
             </div>
             </Link>
             
-            <Link to='/notifications'>
+            {/* <Link to='/notifications'>
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200">
               <div className='flex relative'>
                 <FaRegHeart className='text-2xl' />
                 <p className='w-3 h-3 bg-[#ff3040] rounded-full absolute top-0 left-4'> </p>
               </div>
               <p className="text-md font-semibold lg:block hidden">Notifications</p></div>
-            </Link>
+            </Link> */}
 
             <button className='' onClick={() => setUpload(!upload)}>
               <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><FaRegPlusSquare className='text-2xl'/><p className="text-md font-semibold lg:block hidden">Create</p></div>
             </button>
-            <Link to={`${userName}`}>
+            <Link to={`/${userName}`}>
             <div className="flex items-center p-4 gap-3 hover:bg-[#1a1a1a] hover:rounded-md duration-200"><img src={user} width={25} alt="" /><p className="text-md font-semibold lg:block hidden">Profile</p></div>
             </Link>
             
@@ -156,7 +156,6 @@ export default function Navbar(props) {
                   
                 }
               </div>
-
             </div>
         </div>
         <div className="h-[100vh] w-[1px] bg-[#262626]"></div>

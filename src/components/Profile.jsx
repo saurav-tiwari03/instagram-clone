@@ -10,12 +10,25 @@ import Footer from './Footer';
 export default function Profile({username}) {
   console.log(username)
   const [name,setName] = useState();
+  const [post] = useState(0)
+  const [followers,setFollowers] = useState(11);
+  const [following,setFollowing] = useState(32);
+  const [editProfile,setEditProfile] = useState(false)
   useEffect(() => {
     setName(username);
-  },[username])
+    setFollowers(12)
+    setFollowing(30)
+  },[0])
   return (
-    <div className='bg-black text-white flex'>
+    <div className='bg-black text-white flex relative h-[100vh] w-[100vw]'>
       <Navbar />
+      {
+        editProfile ? (<div className='flex flex-col gap-4 items-center justify-center absolute top-[30%] left-[30%] h-[300px] w-[300px] md:h-[400px] md:w-[400px] lg:h-[300px] lg:w-[350px] bg-[#262626] rounded-xl'>
+        <div className='flex flex-col gap-4 text-center'>
+          <p>Edit name : <input className='bg-transparent outline-none border-b-slate-200' type="text" placeholder='Saurav Tiwari' /></p>
+          <p>Edit bio : <input className='bg-transparent outline-none' type="text" placeholder='Mad Mad Hindu'/></p>
+        </div>
+      </div>) : ''}
       <div className=''>
         {/*Bio Section */}
         <div className=''>
@@ -29,21 +42,18 @@ export default function Profile({username}) {
                 <p>{name}</p>
                 <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>Edit Profile</button>
                 <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>View Profile</button>
-                <p className='text-2xl'><IoIosSettings/></p>
+                <p onClick={() => setEditProfile(true)} className='text-2xl cursor-pointer'><IoIosSettings/></p>
               </div>
               <div className='flex items-center gap-4'>
-                <p>Posts {1}</p>
-                <p>Followers {11}</p>
-                <p>Following {32}</p>
+                <p>Posts {post}</p>
+                <p>Followers {followers}</p>
+                <p>Following {following}</p>
               </div>
               <div className='flex flex-col gap-2'>
                 <p>Saurav Tiwari</p>
                 <p></p>
                 <p className='text-sm'>Mad Mad Hindu🚩
-                  <p className='text-[#e0f1ff] flex flex-col'>
-                  <p>@gaurav_x_tiwari</p>
-                  <p>@tiwaribsarika</p>
-                  </p>
+
                 </p>
               </div>
             </div>
@@ -62,7 +72,7 @@ export default function Profile({username}) {
             Posts
           </div>
           <div>
-
+            <p className='text-center text-red-600'>No posts till now</p>
           </div>
           
         </div>

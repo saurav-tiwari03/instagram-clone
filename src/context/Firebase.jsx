@@ -35,7 +35,7 @@ export const FirebaseProvider = (props) => {
     };
 
     getData();
-  }, [val]);  
+  });  
   return (
     <FirebaseContext.Provider value={{userName,setUserName}}>
       {props.children}
