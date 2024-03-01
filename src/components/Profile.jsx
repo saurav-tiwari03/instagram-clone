@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import user from './../assets/user-profile.png'
 import { IoIosSettings } from "react-icons/io";
 import Footer from './Footer';
+import { EditProfile } from './EditProfile';
 
 
 
@@ -13,12 +14,15 @@ export default function Profile({username}) {
   const [post] = useState(0)
   const [followers,setFollowers] = useState(11);
   const [following,setFollowing] = useState(32);
-  const [editProfile,setEditProfile] = useState(false)
+  const [editProfile,setEditProfile] = useState(false);
   useEffect(() => {
     setName(username);
     setFollowers(12)
     setFollowing(30)
   },[0])
+  const updateProfileHandler = async () => {
+    setEditProfile(false);
+  }
   return (
     <div className='bg-black text-white flex relative h-[100vh] w-[100vw]'>
       <Navbar />
@@ -27,6 +31,7 @@ export default function Profile({username}) {
         <div className='flex flex-col gap-4 text-center'>
           <p>Edit name : <input className='bg-transparent outline-none border-b-slate-200' type="text" placeholder='Saurav Tiwari' /></p>
           <p>Edit bio : <input className='bg-transparent outline-none' type="text" placeholder='Mad Mad Hindu'/></p>
+          <button onClick={updateProfileHandler} className=''>Update button</button>
         </div>
       </div>) : ''}
       <div className=''>
@@ -40,9 +45,9 @@ export default function Profile({username}) {
             <div className='flex flex-col gap-2'>
               <div className='flex items-center gap-4'>
                 <p>{name}</p>
-                <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>Edit Profile</button>
-                <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>View Profile</button>
-                <p onClick={() => setEditProfile(true)} className='text-2xl cursor-pointer'><IoIosSettings/></p>
+                <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>Edit profile</button>
+                <button className='bg-[#4c4c4c] hover:bg-[#262626] rounded-md duration-200 px-4 py-1'>View archive</button>
+                <p onClick={() => setEditProfile(!editProfile)} className='text-2xl cursor-pointer select-none'><IoIosSettings/></p>
               </div>
               <div className='flex items-center gap-4'>
                 <p>Posts {post}</p>
@@ -53,7 +58,6 @@ export default function Profile({username}) {
                 <p>Saurav Tiwari</p>
                 <p></p>
                 <p className='text-sm'>Mad Mad Hindu🚩
-
                 </p>
               </div>
             </div>
@@ -76,7 +80,7 @@ export default function Profile({username}) {
           </div>
           
         </div>
-        <div className='ml-20 '>
+        <div className='ml-20 hidden md:flex lg:flex'>
             <Footer />
         </div>
       </div>
