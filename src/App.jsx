@@ -28,6 +28,7 @@ function App(props) {
   useEffect(() => {
     setUserName(Firebase.userName)
   });
+  
   return (
     <>
       <Router>
