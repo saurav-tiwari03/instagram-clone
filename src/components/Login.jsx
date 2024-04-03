@@ -13,7 +13,7 @@ import { db } from '../config/firebase';
 export default function LoginSignup() {
   const [email,setEmail] = useState();
   const [password,setPassword] = useState();
-  const [eye,setEye] = useState(true);
+  const [eye,setEye] = useState(false);
 
   const eyeHandler = () => {
     setEye(!eye);
@@ -62,7 +62,7 @@ export default function LoginSignup() {
             </div>
           </div>
           <div className='border-[1px] border-[#cdcdcd] my-4 '>
-            <p className='text-center p-4'>Dont have an account? <Link to='/signup'>Sign up</Link> </p>
+            <p className='text-center p-4'>Dont have an account? <Link to='/signup' className='text-[#425682] font-semibold'>Sign up</Link> </p>
           </div>
 
           <div className='text-center text-sm my-2'>
