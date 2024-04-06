@@ -27,7 +27,7 @@ function App(props) {
   });
   useEffect(() => {
     setUserName(Firebase.userName)
-  });
+  },[0]);
   
   return (
     <>

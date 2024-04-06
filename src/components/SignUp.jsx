@@ -33,10 +33,10 @@ export default function SignUp() {
   const handleUser = async() =>{
     try {
       await createUserWithEmailAndPassword(email,password)
+      await addDoc(value,{email:email,name:name,userid:userId,password:password,bio:""})
     } catch (error) { 
       console.log(error);
     }
-    await addDoc(value,{email:email,name:name,userid:userId,password:password})
     getData();
     history('/',{ propKey: {email:email,name:name,userid:userId,password:password} });
   }
